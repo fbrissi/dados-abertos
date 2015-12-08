@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans version="1.1" bean-discovery-mode="all"
+       xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:weld="http://jboss.org/schema/weld/beans"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                           http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd">
+
+    <weld:scan>
+        <weld:exclude name="br.com..web.domain.**"/>
+        <weld:exclude name="br.com.dadosabertos.web.interfaces.**"/>
+        <weld:exclude name="br.com.dadosabertos.web.infrastructure.web.spring.**"/>
+        <weld:exclude name="br.com.dadosabertos.web.infrastructure.security.**"/>
+        <weld:exclude name="br.com.dadosabertos.web.infrastructure.thymeleaf.**"/>
+        <weld:exclude name="br.com.dadosabertos.web.infrastructure.persistence.jpa.converter.**"/>
+    </weld:scan>
+</beans>
