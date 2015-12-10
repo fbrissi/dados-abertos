@@ -10,6 +10,101 @@
  <source-databases>
  </source-databases>
  <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB1" populated="true" UUID="e1439eb5-5f14-4d75-bc81-a13208a91899" name="dim_tempo" objectType="TABLE" physicalName="dim_tempo" >
+   <remarks></remarks>
+   <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL2" populated="true" UUID="2302a5f9-3b93-4c91-9df4-821e41740850" autoIncrement="false" autoIncrementSequenceName="dim_tempo_id_seq" defaultValue="" name="id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Chave primária da tabela</remarks>
+    </column>
+    <column id="COL3" populated="true" UUID="29ae4929-6141-48b2-91ab-fa59dc2d0188" autoIncrement="false" autoIncrementSequenceName="dim_tempo_data_seq" defaultValue="" name="data" nullable="0" physicalName="data" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks>Data, exemplo: 01/01/2012; 02/01/2012; 03/01/2012</remarks>
+    </column>
+    <column id="COL4" populated="true" UUID="84b945a5-d5e5-48c5-9434-6ebabb5a8ec8" autoIncrement="false" autoIncrementSequenceName="dim_tempo_ano_seq" defaultValue="" name="ano" nullable="0" physicalName="ano" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Ano da data em questão (ex: 2012)</remarks>
+    </column>
+    <column id="COL5" populated="true" UUID="cc496ae8-2461-4de1-b065-81172728d4a7" autoIncrement="false" autoIncrementSequenceName="dim_tempo_mes_seq" defaultValue="" name="mes" nullable="0" physicalName="mes" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Mês da data em questão (ex: 1)</remarks>
+    </column>
+    <column id="COL6" populated="true" UUID="f3faf15f-e61b-4b1d-879a-a1fb95bd6c02" autoIncrement="false" autoIncrementSequenceName="dim_tempo_dia_seq" defaultValue="" name="dia" nullable="0" physicalName="dia" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Dia da data em questão (ex: 1)</remarks>
+    </column>
+    <column id="COL7" populated="true" UUID="2177a1be-092e-47e6-a319-346888df1bf2" autoIncrement="false" autoIncrementSequenceName="dim_tempo_dia_semana_seq" defaultValue="" name="dia_semana" nullable="0" physicalName="dia_semana" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Dia da semana em que a data ocorreu: 1- Domingo; 2- Segunda; 3- Terça; 4- Quarta; 5- Quinta; 6- Sexta; e 7- Sábado</remarks>
+    </column>
+    <column id="COL8" populated="true" UUID="ebcbd698-3181-4bfd-805e-1d725e9fec03" autoIncrement="false" autoIncrementSequenceName="dim_tempo_dia_ano_seq" defaultValue="" name="dia_ano" nullable="0" physicalName="dia_ano" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Dia do ano contado a partir do dia 01/01. Exemplo: 01/02 é o 32º dia do ano</remarks>
+    </column>
+    <column id="COL9" populated="true" UUID="984c2cca-0feb-4c80-967e-3d911e5d6b62" autoIncrement="false" autoIncrementSequenceName="dim_tempo_ano_bissexto_seq" defaultValue="F" name="ano_bissexto" nullable="0" physicalName="ano_bissexto" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>&quot;T&quot; para Ano Bissexto (ex: 2012) e &quot;F&quot; para Ano não Bissexto (ex: 2011)</remarks>
+    </column>
+    <column id="COL10" populated="true" UUID="02d3704d-dba2-4680-a916-b25e6bdb2aa6" autoIncrement="false" autoIncrementSequenceName="dim_tempo_dia_util_seq" defaultValue="T" name="dia_util" nullable="0" physicalName="dia_util" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>&quot;T&quot; para dias úteis e &quot;F&quot; para feriados e fim de semana</remarks>
+    </column>
+    <column id="COL11" populated="true" UUID="778d941b-8e64-4cac-94ac-c2fa75a3ffed" autoIncrement="false" autoIncrementSequenceName="dim_tempo_fim_semana_seq" defaultValue="F" name="fim_semana" nullable="0" physicalName="fim_semana" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>&quot;T&quot; para fim de semana (sábado ou domingo) e &quot;F&quot; para os demais dias</remarks>
+    </column>
+    <column id="COL12" populated="true" UUID="7a135e0f-f1ee-4b7a-87eb-8727e44311e6" autoIncrement="false" autoIncrementSequenceName="dim_tempo_feriado_seq" defaultValue="F" name="feriado" nullable="0" physicalName="feriado" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>&quot;T&quot; para quando a data for feriado (ex: 01/01/2012) e &quot;F&quot; para quando não for (ex: 02/01/2012)</remarks>
+    </column>
+    <column id="COL13" populated="true" UUID="68b9b0f3-29f9-40a2-90d7-f4c330ceb1cd" autoIncrement="false" autoIncrementSequenceName="dim_tempo_pre_feriado_seq" defaultValue="" name="pre_feriado" nullable="0" physicalName="pre_feriado" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>&quot;T&quot; para quando a data for véspera de feriado (ex: 31/12/2011) e &quot;F&quot; para quando não for (ex: 01/01/2012)</remarks>
+    </column>
+    <column id="COL14" populated="true" UUID="37f83c21-fd1f-409e-8712-8fba409b2238" autoIncrement="false" autoIncrementSequenceName="dim_tempo_pos_feriado_seq" defaultValue="" name="pos_feriado" nullable="0" physicalName="pos_feriado" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>&quot;T&quot; para quando a data ocorrer após um feriado (ex: 02/01/2012) e &quot;F&quot; para quando não for (ex: 03/01/2012)</remarks>
+    </column>
+    <column id="COL15" populated="true" UUID="e6d781bc-72f1-4097-b00b-73b73aa9737b" autoIncrement="false" autoIncrementSequenceName="dim_tempo_nome_feriado_seq" defaultValue="" name="nome_feriado" nullable="0" physicalName="nome_feriado" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do feriado. Ex. 01/01 – Confraternização Universal; 25/12- Natal</remarks>
+    </column>
+    <column id="COL16" populated="true" UUID="c763c397-9479-4adc-a0e5-c34d898b63a3" autoIncrement="false" autoIncrementSequenceName="dim_tempo_nome_dia_semana_seq" defaultValue="" name="nome_dia_semana" nullable="0" physicalName="nome_dia_semana" precision="15" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Nome do Dia da Semana em que a data ocorreu: domingo, segunda-feira, terça-feira, quarta-feira, quinta-feira, sexta-feira e sábado</remarks>
+    </column>
+    <column id="COL17" populated="true" UUID="14eb5570-794c-4a2e-ac30-f136f5f5089e" autoIncrement="false" autoIncrementSequenceName="dim_tempo_nome_dia_semana_abrev_seq" defaultValue="" name="nome_dia_semana_abrev" nullable="0" physicalName="nome_dia_semana_abrev" precision="15" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do Dia da Semana em 3 letras: dom, seg, ter, qua, qui, sex e sáb</remarks>
+    </column>
+    <column id="COL18" populated="true" UUID="d6500a67-2c37-47c6-952a-1785ba3bccf8" autoIncrement="false" autoIncrementSequenceName="dim_tempo_nome_mes_seq" defaultValue="" name="nome_mes" nullable="0" physicalName="nome_mes" precision="15" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Mês por extenso. Ex: janeiro, fevereiro, março, …</remarks>
+    </column>
+    <column id="COL19" populated="true" UUID="b789e8b1-516d-4d45-84cd-b03c747e8756" autoIncrement="false" autoIncrementSequenceName="dim_tempo_nome_mes_abrev_seq" defaultValue="" name="nome_mes_abrev" nullable="0" physicalName="nome_mes_abrev" precision="3" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Nome do Mês abreviado em 3 letras. Ex: jan, fev, mar …</remarks>
+    </column>
+    <column id="COL20" populated="true" UUID="795a4e0d-0ae3-4daa-92f6-a9287160df70" autoIncrement="false" autoIncrementSequenceName="dim_tempo_quinzena_seq" defaultValue="" name="quinzena" nullable="0" physicalName="quinzena" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Quinzena do mês onde a data ocorreu. &quot;1&quot; para os dias 1º a 15 e &quot;2&quot; para os dias 16 a 31.</remarks>
+    </column>
+    <column id="COL21" populated="true" UUID="192ddba2-b19b-4f62-b69f-d8932a677f92" autoIncrement="false" autoIncrementSequenceName="dim_tempo_bimestre_seq" defaultValue="" name="bimestre" nullable="0" physicalName="bimestre" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Bimestre do ano onde a data ocorreu. &quot;1&quot; para os meses 1 e 2, &quot;2&quot; para 3 e 4 e assim sucessivamente</remarks>
+    </column>
+    <column id="COL22" populated="true" UUID="839d76a5-c624-440a-93af-df09e1a63e6f" autoIncrement="false" autoIncrementSequenceName="dim_tempo_trimestre_seq" defaultValue="" name="trimestre" nullable="0" physicalName="trimestre" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Trimestre do ano onde a data ocorreu. &quot;1&quot; para os meses 1 a 3, &quot;2&quot; para 4 a 6 e assim sucessivamente</remarks>
+    </column>
+    <column id="COL23" populated="true" UUID="90475214-594d-4157-ac34-45ff9c193e72" autoIncrement="false" autoIncrementSequenceName="dim_tempo_semestre_seq" defaultValue="" name="semestre" nullable="0" physicalName="semestre" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Semestre do ano onde a data ocorreu. &quot;1&quot; para os meses 1 a 6 e &quot;2&quot; para os meses 7 a 12</remarks>
+    </column>
+    <column id="COL24" populated="true" UUID="4f2e4e35-11d5-49cc-bfc0-bfdd85b1dffd" autoIncrement="false" autoIncrementSequenceName="dim_tempo_nr_semana_mes_seq" defaultValue="" name="nr_semana_mes" nullable="0" physicalName="nr_semana_mes" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Número da semana do mês onde a data ocorreu. Ex: 17/01/2012 ocorreu na semana 3 do mês</remarks>
+    </column>
+    <column id="COL25" populated="true" UUID="11c5e456-5ea6-41f4-ad1f-9dd2b8d4dba0" autoIncrement="false" autoIncrementSequenceName="dim_tempo_nr_semana_ano_seq" defaultValue="" name="nr_semana_ano" nullable="0" physicalName="nr_semana_ano" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Número da semana do ano onde a data ocorreu. Ex: 20/02/2012 ocorreu na semana 8 do ano</remarks>
+    </column>
+    <column id="COL26" populated="true" UUID="f2f0be2b-acdc-4458-9b03-44dab5ae3c2f" autoIncrement="false" autoIncrementSequenceName="dim_tempo_estacao_ano_seq" defaultValue="" name="estacao_ano" nullable="0" physicalName="estacao_ano" precision="15" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>&quot;primavera&quot; para os dias 23/09 a 20/12; &quot;verão&quot; para os dias 21/12 a 20/03; &quot;outono&quot; para os dias 21/03 a 20/06; e &quot;inverno&quot; para os dias 21/06 a 22/09</remarks>
+    </column>
+    <column id="COL27" populated="true" UUID="79f712ba-44af-4f9b-9b55-695f1c6309f1" autoIncrement="false" autoIncrementSequenceName="dim_tempo_data_por_extenco_seq" defaultValue="" name="data_por_extenco" nullable="0" physicalName="data_por_extenco" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Data por extenso, exemplo: 1º de janeiro de 2012.</remarks>
+    </column>
+    <column id="COL28" populated="true" UUID="e9a93fc0-6fe5-465f-b3af-6f743a8371d8" autoIncrement="false" autoIncrementSequenceName="dim_tempo_evento_seq" defaultValue="" name="evento" nullable="0" physicalName="evento" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Reservado par ao registro de algum evento importante que possa ter ocorrido durante um determinado período. Ex: entre 13/06 e 22/06/2012 ocorreu a conferência &quot;Rio +20&quot; no Rio de Janeiro</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB13" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX29" populated="true" UUID="fce19021-50b3-4e9d-84cb-46053769260b" clustered="false" name="dim_tempo-id-idx" physicalName="dim_tempo-id-idx" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC30" populated="true" UUID="8b6e1f72-1e81-4adf-ba9f-4a62799170d5" ascendingOrDescending="UNSPECIFIED" column-ref="COL2" name="id" physicalName="id" />
+    </index>
+   </folder>
+  </table>
   <relationships>
   </relationships>
  </target-database>
@@ -17,6 +112,7 @@
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB1" x="65" y="129" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
  </play-pen>
  <critic-manager>
   <critic-grouping platformType="Generic" enabled="true">
