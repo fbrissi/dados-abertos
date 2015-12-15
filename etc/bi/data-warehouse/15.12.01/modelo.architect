@@ -146,10 +146,10 @@
   <table id="TAB42" populated="true" UUID="0ca31e01-8ba5-4715-8f84-12694493f528" name="remuneracao" objectType="TABLE" physicalName="remuneracao" >
    <remarks></remarks>
    <folder id="FOLTAB421" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL43" populated="true" UUID="dc5b86c1-f641-4a77-9675-5b095915bb2f" autoIncrement="false" autoIncrementSequenceName="remuneracao_servidor_id_seq" defaultValue="" name="servidor_id" nullable="0" physicalName="servidor_id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL43" populated="true" UUID="dc5b86c1-f641-4a77-9675-5b095915bb2f" autoIncrement="false" autoIncrementSequenceName="remuneracao_servidor_publico_id_seq" defaultValue="" name="servidor_publico_id" nullable="0" physicalName="servidor_publico_id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL44" populated="true" UUID="62add068-00fb-4b78-8014-463d3516286e" autoIncrement="false" autoIncrementSequenceName="proventos_codigo_seq" defaultValue="" name="codigo" nullable="0" physicalName="codigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+    <column id="COL44" populated="true" UUID="62add068-00fb-4b78-8014-463d3516286e" autoIncrement="false" autoIncrementSequenceName="remuneracao_proventos_codigo_seq" defaultValue="" name="proventos_codigo" nullable="0" physicalName="proventos_codigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
      <remarks></remarks>
     </column>
     <column id="COL45" populated="true" UUID="3fdf2637-8019-4888-816c-f06ad5f54d36" autoIncrement="false" autoIncrementSequenceName="remuneracao_tempo_id_seq" defaultValue="" name="tempo_id" nullable="0" physicalName="tempo_id" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -165,8 +165,8 @@
     </folder>
     <folder id="FOLTAB424" populated="true" name="Indices" physicalName="Indices" type="4">
     <index id="IDX47" populated="true" UUID="01825930-bdad-4056-a60a-cd840466327f" clustered="false" name="remuneracao_id_idx" physicalName="remuneracao_id_idx" primaryKeyIndex="true" unique="false" >
-     <index-column id="IDC48" populated="true" UUID="f3487aff-aa97-4bac-9236-1674df33eab7" ascendingOrDescending="UNSPECIFIED" column-ref="COL43" name="servidor_id" physicalName="servidor_id" />
-     <index-column id="IDC49" populated="true" UUID="36920203-fe02-40be-8313-9526dc3e487f" ascendingOrDescending="UNSPECIFIED" column-ref="COL44" name="codigo" physicalName="codigo" />
+     <index-column id="IDC48" populated="true" UUID="f3487aff-aa97-4bac-9236-1674df33eab7" ascendingOrDescending="UNSPECIFIED" column-ref="COL43" name="servidor_publico_id" physicalName="servidor_publico_id" />
+     <index-column id="IDC49" populated="true" UUID="36920203-fe02-40be-8313-9526dc3e487f" ascendingOrDescending="UNSPECIFIED" column-ref="COL44" name="proventos_codigo" physicalName="proventos_codigo" />
      <index-column id="IDC50" populated="true" UUID="e262c153-97be-4059-8839-69233acb64a9" ascendingOrDescending="UNSPECIFIED" column-ref="COL45" name="tempo_id" physicalName="tempo_id" />
     </index>
    </folder>
@@ -210,10 +210,10 @@
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
-  <table-pane table-ref="TAB1" x="25" y="162" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB31" x="837" y="20" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB42" x="464" y="165" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB51" x="751" y="373" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB1" x="24" y="51" bgColor="0xbfd6ff" fgColor="0x0000cc" rounded="true" dashed="false"/>
+  <table-pane table-ref="TAB31" x="837" y="20" bgColor="0xbfd6ff" fgColor="0x0000cc" rounded="true" dashed="false"/>
+  <table-pane table-ref="TAB42" x="464" y="165" bgColor="0xc8dccc" fgColor="0x006633" rounded="true" dashed="false"/>
+  <table-pane table-ref="TAB51" x="751" y="373" bgColor="0xbfd6ff" fgColor="0x0000cc" rounded="true" dashed="false"/>
   <table-link relationship-ref="REL59" pkConnection="0.5283018867924528" fkConnection="0.515" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="130"/>
   <table-link relationship-ref="REL61" pkConnection="0.4419889502762431" fkConnection="0.6190476190476191" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="24"/>
   <table-link relationship-ref="REL57" pkConnection="0.23110151187904968" fkConnection="0.5063291139240507" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
