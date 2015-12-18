@@ -68,60 +68,28 @@
   <created_user>-</created_user>
   <created_date>2015&#x2f;12&#x2f;16 18&#x3a;33&#x3a;39.243</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;12&#x2f;18 02&#x3a;24&#x3a;57.230</modified_date>
+  <modified_date>2015&#x2f;12&#x2f;18 11&#x3a;10&#x3a;32.964</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <order>
-  <hop> <from>Data Grid</from><to>HTTP Client</to><enabled>Y</enabled> </hop>
-  <hop> <from>HTTP Client</from><to>Split field to rows</to><enabled>Y</enabled> </hop>
-  <hop> <from>Split field to rows</from><to>Filter rows</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter rows</from><to>Modified Java Script Value</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter rows</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Modified Java Script Value</from><to>HTTP Post</to><enabled>Y</enabled> </hop>
-  <hop> <from>HTTP Post</from><to>Zip file</to><enabled>Y</enabled> </hop>
+  <hop> <from>Logger Fail</from><to>Abortar</to><enabled>Y</enabled> </hop>
+  <hop> <from>Start Process</from><to>GET Param</to><enabled>Y</enabled> </hop>
+  <hop> <from>Capturar Linhas</from><to>Filter rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter rows</from><to>Capturar Par&#xe2;metros</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter rows</from><to>Nada &#xe0; fazer</to><enabled>Y</enabled> </hop>
+  <hop> <from>Capturar Par&#xe2;metros</from><to>POST File Download</to><enabled>Y</enabled> </hop>
+  <hop> <from>GET Param</from><to>Verificar Status GET</to><enabled>Y</enabled> </hop>
+  <hop> <from>Verificar Status GET</from><to>Capturar Linhas</to><enabled>Y</enabled> </hop>
+  <hop> <from>Verificar Status GET</from><to>Logger Fail</to><enabled>Y</enabled> </hop>
+  <hop> <from>POST File Download</from><to>Verificar Status POST</to><enabled>Y</enabled> </hop>
+  <hop> <from>Verificar Status POST</from><to>Extrair Arquivo</to><enabled>Y</enabled> </hop>
+  <hop> <from>Verificar Status POST</from><to>Logger Fail</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>HTTP Client</name>
-    <type>HTTP</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <url/>
-    <urlInField>Y</urlInField>
-    <urlField>url</urlField>
-    <encoding>UTF-8</encoding>
-    <httpLogin/>
-    <httpPassword>Encrypted </httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <socketTimeout>10000</socketTimeout>
-    <connectionTimeout>10000</connectionTimeout>
-    <closeIdleConnectionsTime>-1</closeIdleConnectionsTime>
-    <lookup>
-    </lookup>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-    </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>192</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Data Grid</name>
+    <name>Start Process</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
@@ -149,15 +117,15 @@
     </data>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>32</xloc>
-      <yloc>112</yloc>
+      <xloc>64</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Split field to rows</name>
-    <type>SplitFieldToRows3</type>
+    <name>Nada &#xe0; fazer</name>
+    <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -166,17 +134,10 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-   <splitfield>result</splitfield>
-   <delimiter>&#x5c;s&#x2a;&#x5c;n&#x5c;s&#x2a;</delimiter>
-   <newfield>line</newfield>
-   <rownum>Y</rownum>
-   <rownum_field>count</rownum_field>
-   <resetrownumber>Y</resetrownumber>
-   <delimiter_is_regex>Y</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>336</xloc>
-      <yloc>112</yloc>
+      <xloc>512</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -192,8 +153,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Modified Java Script Value</send_true_to>
-<send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
+<send_true_to>Capturar Par&#xe2;metros</send_true_to>
+<send_false_to>Nada &#xe0; fazer</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -204,15 +165,15 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>496</xloc>
-      <yloc>112</yloc>
+      <xloc>512</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Modified Java Script Value</name>
-    <type>ScriptValueMod</type>
+    <name>GET Param</name>
+    <type>HTTP</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -221,118 +182,34 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var matcher &#x3d; &#x2f;&#x28;&#x5c;S&#x2b;&#x29;&#x3d;&#x5b;&#x27;&#x22;&#x5d;&#x7b;1&#x7d;&#x28;&#x5b;&#x5e;&#x3e;&#x5d;&#x2a;&#x3f;&#x29;&#x5b;&#x27;&#x22;&#x5d;&#x7b;1&#x7d;&#x2f;.exec&#x28;line&#x29;&#x3b;&#xa;for &#x28;var i &#x3d; 0&#x3b; i &#x3c; matcher.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	var attributeName &#x3d; matcher&#x5b;1&#x5d;&#x3b;&#xa;	var attributeValue &#x3d; matcher&#x5b;2&#x5d;&#x3b;&#xa;	var BUSCA &#x3d; &#x22;&#x22;&#x3b;&#xa;	var MES &#x3d; &#x22;01&#x22;&#x3b;&#xa;	var ANO &#x3d; &#x22;2015&#x22;&#x3b;&#xa;	var NOME &#x3d; &#x22;&#x22;&#x3b;&#xa;	var SECRETARIA &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var LOCAL &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var CARGO &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var SITUACAO &#x3d; &#x22;2&#x22;&#x3b;&#xa;&#xa;	var matcherValue &#x3d; &#x2f;value&#x3d;&#x22;&#x28;.&#x2a;&#x3f;&#x29;&#x22;&#x2f;.exec&#x28;line&#x29;&#x3b;&#xa;	if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTTARGET&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var EVENTTARGET &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTARGUMENT&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var EVENTARGUMENT &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__LASTFOCUS&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var LASTFOCUS &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__VIEWSTATE&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var VIEWSTATE &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTVALIDATION&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var EVENTVALIDATION &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>EVENTTARGET</name>
-        <rename>EVENTTARGET</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>EVENTARGUMENT</name>
-        <rename>EVENTARGUMENT</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>LASTFOCUS</name>
-        <rename>LASTFOCUS</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>VIEWSTATE</name>
-        <rename>VIEWSTATE</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>EVENTVALIDATION</name>
-        <rename>EVENTVALIDATION</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>BUSCA</name>
-        <rename>BUSCA</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>MES</name>
-        <rename>MES</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>ANO</name>
-        <rename>ANO</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>NOME</name>
-        <rename>NOME</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>SECRETARIA</name>
-        <rename>SECRETARIA</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>LOCAL</name>
-        <rename>LOCAL</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>CARGO</name>
-        <rename>CARGO</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>SITUACAO</name>
-        <rename>SITUACAO</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>656</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dummy &#x28;do nothing&#x29;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
+    <url/>
+    <urlInField>Y</urlInField>
+    <urlField>url</urlField>
+    <encoding>UTF-8</encoding>
+    <httpLogin/>
+    <httpPassword>Encrypted </httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <socketTimeout>10000</socketTimeout>
+    <connectionTimeout>10000</connectionTimeout>
+    <closeIdleConnectionsTime>-1</closeIdleConnectionsTime>
+    <lookup>
+    </lookup>
+    <result>
+      <name>get.html</name>
+      <code>get.status</code>
+      <response_time/>
+    </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>656</xloc>
-      <yloc>208</yloc>
+      <xloc>64</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>HTTP Post</name>
+    <name>POST File Download</name>
     <type>HTTPPOST</type>
     <description/>
     <distribute>Y</distribute>
@@ -357,73 +234,201 @@
     <closeIdleConnectionsTime>-1</closeIdleConnectionsTime>
     <lookup>
       <arg>
-        <name>EVENTTARGET</name>
+        <name>eventtarget</name>
         <parameter>__EVENTTARGET</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>EVENTARGUMENT</name>
+        <name>eventargument</name>
         <parameter>__EVENTARGUMENT</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>LASTFOCUS</name>
+        <name>lastfocus</name>
         <parameter>__LASTFOCUS</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>VIEWSTATE</name>
+        <name>viewstate</name>
         <parameter>__VIEWSTATE</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>EVENTVALIDATION</name>
+        <name>eventvalidation</name>
         <parameter>__EVENTVALIDATION</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>BUSCA</name>
+        <name>busca</name>
         <parameter>ctl00&#x24;ctl00&#x24;txtBusca</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>MES</name>
+        <name>mes</name>
         <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlMes</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>ANO</name>
+        <name>ano</name>
         <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlAno</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>NOME</name>
+        <name>nome</name>
         <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;txtNome</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>SECRETARIA</name>
+        <name>secretaria</name>
         <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlSecretaria</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>LOCAL</name>
+        <name>local</name>
         <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlLocal</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>CARGO</name>
+        <name>cargo</name>
         <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlCargo</parameter>
         <header>N</header>        </arg>
       <arg>
-        <name>SITUACAO</name>
+        <name>situacao</name>
         <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlSituacao</parameter>
         <header>N</header>        </arg>
       </lookup>
     <result>
-      <name>zip</name>
-      <code/>
+      <name>zip.file</name>
+      <code>post.status</code>
       <response_time/>
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>816</xloc>
-      <yloc>32</yloc>
+      <xloc>848</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Zip file</name>
+    <name>Capturar Par&#xe2;metros</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var matcher &#x3d; &#x2f;&#x28;&#x5c;S&#x2b;&#x29;&#x3d;&#x5b;&#x27;&#x22;&#x5d;&#x7b;1&#x7d;&#x28;&#x5b;&#x5e;&#x3e;&#x5d;&#x2a;&#x3f;&#x29;&#x5b;&#x27;&#x22;&#x5d;&#x7b;1&#x7d;&#x2f;.exec&#x28;line&#x29;&#x3b;&#xa;for &#x28;var i &#x3d; 0&#x3b; i &#x3c; matcher.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	var attributeName &#x3d; matcher&#x5b;1&#x5d;&#x3b;&#xa;	var attributeValue &#x3d; matcher&#x5b;2&#x5d;&#x3b;&#xa;	&#xa;    var busca &#x3d; &#x22;&#x22;&#x3b;&#xa;	var mes &#x3d; &#x22;01&#x22;&#x3b;&#xa;	var ano &#x3d; &#x22;2015&#x22;&#x3b;&#xa;	var nome &#x3d; &#x22;&#x22;&#x3b;&#xa;	var secretaria &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var local &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var cargo &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var situacao &#x3d; &#x22;2&#x22;&#x3b;&#xa;&#xa;	var matcherValue &#x3d; &#x2f;value&#x3d;&#x22;&#x28;.&#x2a;&#x3f;&#x29;&#x22;&#x2f;.exec&#x28;line&#x29;&#x3b;&#xa;	if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTTARGET&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var eventtarget &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTARGUMENT&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var eventargument &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__LASTFOCUS&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var lastfocus &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__VIEWSTATE&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var viewstate &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTVALIDATION&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var eventvalidation &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>busca</name>
+        <rename>busca</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>mes</name>
+        <rename>mes</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>ano</name>
+        <rename>ano</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>nome</name>
+        <rename>nome</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>secretaria</name>
+        <rename>secretaria</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>local</name>
+        <rename>local</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>cargo</name>
+        <rename>cargo</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>situacao</name>
+        <rename>situacao</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>eventtarget</name>
+        <rename>eventtarget</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>eventargument</name>
+        <rename>eventargument</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>lastfocus</name>
+        <rename>lastfocus</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>viewstate</name>
+        <rename>viewstate</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>eventvalidation</name>
+        <rename>eventvalidation</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>688</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Capturar Linhas</name>
+    <type>SplitFieldToRows3</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>url</splitfield>
+   <delimiter>&#x5c;s&#x2a;&#x5c;n&#x5c;s&#x2a;</delimiter>
+   <newfield>line</newfield>
+   <rownum>Y</rownum>
+   <rownum_field>count</rownum_field>
+   <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>Y</delimiter_is_regex>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Extrair Arquivo</name>
     <type>ZipFile</type>
     <description/>
     <distribute>Y</distribute>
@@ -444,8 +449,112 @@
     <movetofolderfield>file</movetofolderfield>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>816</xloc>
-      <yloc>160</yloc>
+      <xloc>1040</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Verificar Status GET</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<fieldname>get.status</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>Integer</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Logger Fail</default_target_step>
+<cases><case><value>200</value>
+<target_step>Capturar Linhas</target_step>
+</case></cases>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>224</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Logger Fail</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_error</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>O portal &#x24;&#x7b;url&#x7d; retornou um erro com o c&#xf3;digo.</logmessage>
+    <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>512</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abortar</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message>O portal &#x24;&#x7b;url&#x7d; retornou um erro com o c&#xf3;digo.</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>512</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Verificar Status POST</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<fieldname>post.status</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>Integer</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Logger Fail</default_target_step>
+<cases><case><value>200</value>
+<target_step>Extrair Arquivo</target_step>
+</case></cases>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>848</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
