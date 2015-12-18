@@ -54,7 +54,7 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>N</capture_step_performance>
+    <capture_step_performance>Y</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
@@ -68,54 +68,21 @@
   <created_user>-</created_user>
   <created_date>2015&#x2f;12&#x2f;16 18&#x3a;33&#x3a;39.243</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;12&#x2f;17 16&#x3a;25&#x3a;13.124</modified_date>
+  <modified_date>2015&#x2f;12&#x2f;18 02&#x3a;24&#x3a;57.230</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <order>
-  <hop> <from>Generate Rows 2</from><to>HTTP Client</to><enabled>Y</enabled> </hop>
-  <hop> <from>HTTP Client</from><to>Modified Java Script Value</to><enabled>Y</enabled> </hop>
+  <hop> <from>Data Grid</from><to>HTTP Client</to><enabled>Y</enabled> </hop>
+  <hop> <from>HTTP Client</from><to>Split field to rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Split field to rows</from><to>Filter rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter rows</from><to>Modified Java Script Value</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter rows</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Modified Java Script Value</from><to>HTTP Post</to><enabled>Y</enabled> </hop>
+  <hop> <from>HTTP Post</from><to>Zip file</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>Generate Rows 2</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>url</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>http&#x3a;&#x2f;&#x2f;www.bauru.sp.gov.br&#x2f;administracao&#x2f;salarios.aspx</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>112</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>HTTP Client</name>
     <type>HTTP</type>
@@ -142,13 +109,103 @@
     </lookup>
     <result>
       <name>result</name>
-      <code>status</code>
-      <response_time>time</response_time>
+      <code/>
+      <response_time/>
     </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>304</xloc>
-      <yloc>144</yloc>
+      <xloc>192</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Data Grid</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>url</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line> <item>http&#x3a;&#x2f;&#x2f;www.bauru.sp.gov.br&#x2f;administracao&#x2f;salarios.aspx</item> </line>
+    </data>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>32</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Split field to rows</name>
+    <type>SplitFieldToRows3</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>result</splitfield>
+   <delimiter>&#x5c;s&#x2a;&#x5c;n&#x5c;s&#x2a;</delimiter>
+   <newfield>line</newfield>
+   <rownum>Y</rownum>
+   <rownum_field>count</rownum_field>
+   <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>Y</delimiter_is_regex>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>336</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Modified Java Script Value</send_true_to>
+<send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>line</leftvalue>
+ <function>STARTS WITH</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>&#x3c;input type&#x3d;&#x22;hidden&#x22;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>496</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -168,11 +225,227 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var workingDirectory &#x3d; getVariable&#x28;&#x22;Internal.Transformation.Filename.Directory&#x22;, &#x22;&#x2f;opt&#x2f;pdi&#x2f;dados-abertos&#x22;&#x29;&#x3b;&#xa;var libraryPath &#x3d; workingDirectory &#x2b; &#x22;&#x2f;jquery.min.js&#x22;&#x3b;&#xa;LoadScriptFile&#x28;libraryPath&#x29;&#x3b;&#xa;&#x24;&#x28;url&#x29;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
+        <jsScript_script>var matcher &#x3d; &#x2f;&#x28;&#x5c;S&#x2b;&#x29;&#x3d;&#x5b;&#x27;&#x22;&#x5d;&#x7b;1&#x7d;&#x28;&#x5b;&#x5e;&#x3e;&#x5d;&#x2a;&#x3f;&#x29;&#x5b;&#x27;&#x22;&#x5d;&#x7b;1&#x7d;&#x2f;.exec&#x28;line&#x29;&#x3b;&#xa;for &#x28;var i &#x3d; 0&#x3b; i &#x3c; matcher.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	var attributeName &#x3d; matcher&#x5b;1&#x5d;&#x3b;&#xa;	var attributeValue &#x3d; matcher&#x5b;2&#x5d;&#x3b;&#xa;	var BUSCA &#x3d; &#x22;&#x22;&#x3b;&#xa;	var MES &#x3d; &#x22;01&#x22;&#x3b;&#xa;	var ANO &#x3d; &#x22;2015&#x22;&#x3b;&#xa;	var NOME &#x3d; &#x22;&#x22;&#x3b;&#xa;	var SECRETARIA &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var LOCAL &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var CARGO &#x3d; &#x22;&#x25;&#x22;&#x3b;&#xa;	var SITUACAO &#x3d; &#x22;2&#x22;&#x3b;&#xa;&#xa;	var matcherValue &#x3d; &#x2f;value&#x3d;&#x22;&#x28;.&#x2a;&#x3f;&#x29;&#x22;&#x2f;.exec&#x28;line&#x29;&#x3b;&#xa;	if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTTARGET&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var EVENTTARGET &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTARGUMENT&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var EVENTARGUMENT &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__LASTFOCUS&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var LASTFOCUS &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__VIEWSTATE&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var VIEWSTATE &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d; else if &#x28;&#x27;id&#x27; &#x3d;&#x3d;&#x3d; attributeName &#x26;&#x26; &#x27;__EVENTVALIDATION&#x27; &#x3d;&#x3d; attributeValue&#x29; &#x7b;&#xa;		var EVENTVALIDATION &#x3d; matcherValue&#x5b;1&#x5d;&#x3b;		&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>EVENTTARGET</name>
+        <rename>EVENTTARGET</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>EVENTARGUMENT</name>
+        <rename>EVENTARGUMENT</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>LASTFOCUS</name>
+        <rename>LASTFOCUS</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>VIEWSTATE</name>
+        <rename>VIEWSTATE</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>EVENTVALIDATION</name>
+        <rename>EVENTVALIDATION</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>BUSCA</name>
+        <rename>BUSCA</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>MES</name>
+        <rename>MES</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>ANO</name>
+        <rename>ANO</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>NOME</name>
+        <rename>NOME</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>SECRETARIA</name>
+        <rename>SECRETARIA</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>LOCAL</name>
+        <rename>LOCAL</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>CARGO</name>
+        <rename>CARGO</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>SITUACAO</name>
+        <rename>SITUACAO</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
-      <yloc>144</yloc>
+      <xloc>656</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy &#x28;do nothing&#x29;</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>656</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>HTTP Post</name>
+    <type>HTTPPOST</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <postafile>N</postafile>
+    <encoding>UTF-8</encoding>
+    <url/>
+    <urlInField>Y</urlInField>
+    <urlField>url</urlField>
+    <requestEntity/>
+    <httpLogin/>
+    <httpPassword>Encrypted </httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <socketTimeout>10000</socketTimeout>
+    <connectionTimeout>10000</connectionTimeout>
+    <closeIdleConnectionsTime>-1</closeIdleConnectionsTime>
+    <lookup>
+      <arg>
+        <name>EVENTTARGET</name>
+        <parameter>__EVENTTARGET</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>EVENTARGUMENT</name>
+        <parameter>__EVENTARGUMENT</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>LASTFOCUS</name>
+        <parameter>__LASTFOCUS</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>VIEWSTATE</name>
+        <parameter>__VIEWSTATE</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>EVENTVALIDATION</name>
+        <parameter>__EVENTVALIDATION</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>BUSCA</name>
+        <parameter>ctl00&#x24;ctl00&#x24;txtBusca</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>MES</name>
+        <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlMes</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>ANO</name>
+        <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlAno</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>NOME</name>
+        <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;txtNome</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>SECRETARIA</name>
+        <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlSecretaria</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>LOCAL</name>
+        <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlLocal</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>CARGO</name>
+        <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlCargo</parameter>
+        <header>N</header>        </arg>
+      <arg>
+        <name>SITUACAO</name>
+        <parameter>ctl00&#x24;ctl00&#x24;content&#x24;content_administracao&#x24;ddlSituacao</parameter>
+        <header>N</header>        </arg>
+      </lookup>
+    <result>
+      <name>zip</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>816</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Zip file</name>
+    <type>ZipFile</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <sourcefilenamefield>zip</sourcefilenamefield>
+    <targetfilenamefield>zip</targetfilenamefield>
+    <baseFolderField/>
+    <operation_type>move</operation_type>
+    <addresultfilenames>N</addresultfilenames>
+    <overwritezipentry>N</overwritezipentry>
+    <createparentfolder>N</createparentfolder>
+    <keepsourcefolder>N</keepsourcefolder>
+    <movetofolderfield>file</movetofolderfield>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>816</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
