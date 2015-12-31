@@ -346,7 +346,7 @@
                             <effort>Max</effort>
                             <threshold>Low</threshold>
                             <xmlOutput>true</xmlOutput>
-                            <excludeFilterFile>${basedir}/etc/maven/findbugs-exclude.xml</excludeFilterFile>
+                            <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
                             <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
                         </configuration>
                         <executions>
@@ -391,7 +391,7 @@
                             <effort>Max</effort>
                             <threshold>Low</threshold>
                             <xmlOutput>true</xmlOutput>
-                            <excludeFilterFile>${basedir}/etc/maven/findbugs-exclude.xml</excludeFilterFile>
+                            <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
                             <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
                         </configuration>
                         <executions>
